@@ -17,9 +17,6 @@ def cadastro():
         elif(menu == 4):
              delete()
 
-
-
-
 def update(id_forn,*args):
     try:
         sql = f"UPDATE tb_fornecedor SET nome_forn=%s WHERE id_forn={id_forn};"
