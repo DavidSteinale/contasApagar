@@ -25,17 +25,21 @@ def delete():
         sql1 = f"SELECT * FROM tb_fornecedor WHERE id_forn={id};"
         conexao.cursor.execute(sql1)
         rows = conexao.cursor.fetchall()
+
         for row in rows:
-            print('Código:', row[0], '- Fornecedor: ', row[1])
+            print('Fornecedor:', row[0],'-', row[1])
 
+        opcao = input('Deseja realmente excluir? S - sim | N - não :')
 
-
-        # sql = f"DELETE FROM tb_fornecedor WHERE id_forn={id_forn};"
-        # conexao.cursor.execute(sql)
-        conexao.conn.commit()
-        conexao.cursor.close()
-        conexao.conn.close()
-
+        if(opcao.lower()=='s'):
+            sql = f"DELETE FROM tb_fornecedor WHERE id_forn={id};"
+            conexao.cursor.execute(sql)
+            conexao.conn.commit()
+            conexao.cursor.close()
+            conexao.conn.close()
+            print('Excluido com sucesso')
+        else:
+            print('não excluido')
     except NameError as erro:
         print('Erro', erro)
 
