@@ -4,8 +4,21 @@ def cadastro():
     print('************************')
     print('*CADASTRO DE FORNECEDOR*')
     print('************************')
+    menu=0
+    while(menu!=5):
+        menu = int(input('opção'))
 
-    delete()
+        if(menu==1):
+            inserir()
+        elif(menu==2):
+            listar()
+        elif(menu == 3):
+            listar()
+        elif(menu == 4):
+             delete()
+
+
+
 
 def update(id_forn,*args):
     try:
@@ -41,10 +54,12 @@ def delete():
     except NameError as erro:
         print('Erro', erro)
 
-def inserir(*args):
+def inserir():
     try:
-        sql = "INSERT INTO tb_fornecedor(nome_forn) VALUES(%s);"
-        conexao.cursor.execute(sql, args)
+        print()
+        nome = input('Digite o nome do novo fornecedor; ')
+        sql = f"INSERT INTO tb_fornecedor(nome_forn) VALUES('{nome}');"
+        conexao.cursor.execute(sql)
         conexao.conn.commit()
         conexao.cursor.close()
         conexao.conn.close()
@@ -57,7 +72,7 @@ def listar():
     rows = conexao.cursor.fetchall()
 
     for row in rows:
-        print('ID:', row[0], '- fornecedor: ', row[1])
+        print('Cógido:', row[0], '- fornecedor: ', row[1])
 
 if(__name__=='__main__'):
     cadastro()

@@ -1,9 +1,10 @@
 import fornecedor
 
-print('CONTAS A PAGAR.')
+class principal():
+    print('FINANCEIRO')
 
-print('Menu:')
-menu = int(input('1 - Cadatro de fornecedores \n2 - lançar titulos \n'))
+    print('Menu:')
+    menu = int(input('1 - Fornecedores \n2 - lançar titulos \n'))
 
-if(menu==1):
-    fornecedor.cadastro()
+    if(menu==1):
+        fornecedor.cadastro()
