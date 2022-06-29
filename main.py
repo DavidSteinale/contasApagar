@@ -1,7 +1,5 @@
 import fornecedor
 
-import conexao
-
 print('CONTAS A PAGAR.')
 
 print('Menu:')
