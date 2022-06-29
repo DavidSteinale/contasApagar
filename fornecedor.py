@@ -5,8 +5,6 @@ def cadastro():
     print('*CADASTRO DE FORNECEDOR*')
     print('************************')
 
-    # nome = input('Infome o nome do fornecedor?')
-    # id = int(input('inform o id a ser alterado'))
     delete()
 
 def update(id_forn,*args):
@@ -37,12 +35,11 @@ def delete():
             conexao.conn.commit()
             conexao.cursor.close()
             conexao.conn.close()
-            print('Excluido com sucesso')
+            print('Excluido com sucesso.')
         else:
-            print('não excluido')
+            print('Registro excluido.')
     except NameError as erro:
         print('Erro', erro)
-
 
 def inserir(*args):
     try:
@@ -64,5 +61,3 @@ def listar():
 
 if(__name__=='__main__'):
     cadastro()
-    #inserir()
-    #listar()
