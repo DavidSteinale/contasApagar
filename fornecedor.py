@@ -30,12 +30,14 @@ def inserir():
             print('Erro', erro)
 
 def listar():
-    sql = "SELECT * FROM tb_fornecedor;"
-    conexao.cursor.execute(sql)
-    rows = conexao.cursor.fetchall()
-
-    for row in rows:
-        print('Cógido:', row[0], '- fornecedor: ', row[1])
+    try:
+        sql = "SELECT * FROM tb_fornecedor;"
+        conexao.cursor.execute(sql)
+        rows = conexao.cursor.fetchall()
+        for row in rows:
+            print('Cógido:', row[0], '- fornecedor: ', row[1])
+    except NameError as erro:
+        print('Erro', erro)
 
 def update():
     try:
