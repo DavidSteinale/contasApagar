@@ -6,21 +6,22 @@ def cadastro():
     print('************************')
     menu=0
     while(menu!=5):
-        menu = int(input('opção'))
-
+        menu = int(input('Informe uma das opções: \n 1 - Cadastrar\n 2 - Listar\n 3 - Atualizar'))
         if(menu==1):
-            inserir()
-        elif(menu==2):
-            listar()
-        elif(menu == 3):
-            listar()
-        elif(menu == 4):
-             delete()
+            delete()
+        # elif(menu==2):
+        #     listar()
+        # elif(menu == 3):
+        #     update()
+        # elif(menu == 4):
+        #      delete()
 
-def update(id_forn,*args):
+def update():
     try:
-        sql = f"UPDATE tb_fornecedor SET nome_forn=%s WHERE id_forn={id_forn};"
-        conexao.cursor.execute(sql,args)
+        id_forn = int(input('Informe o código do fornecedor: '))
+        args = input('Informe o novo nome do fornecedor:')
+        sql = f"UPDATE tb_fornecedor SET nome_forn='{args}' WHERE id_forn={id_forn};"
+        conexao.cursor.execute(sql)
         conexao.conn.commit()
         conexao.cursor.close()
         conexao.conn.close()
@@ -47,7 +48,7 @@ def delete():
             conexao.conn.close()
             print('Excluido com sucesso.')
         else:
-            print('Registro excluido.')
+            print('Registro não excluido.')
     except NameError as erro:
         print('Erro', erro)
 
@@ -70,6 +71,6 @@ def listar():
 
     for row in rows:
         print('Cógido:', row[0], '- fornecedor: ', row[1])
-
-if(__name__=='__main__'):
-    cadastro()
+#
+# if(__name__=='__main__'):
+#     cadastro()
