@@ -9,7 +9,7 @@ def cadastro():
     print('*LANÇAMENTOS DE TITULOS*')
     print('************************')
     menu=0
-    update()
+    delete()
 
 def inserir():
     try:
@@ -51,8 +51,28 @@ def update():
     except NameError as erro:
         print('Erro', erro)
 
+def delete():
+    try:
+        id_titulo = int(input('Informe o codigo do titulo a ser excluido:'))
+        sql1 = f"SELECT * FROM tb_titulo AS t INNER JOIN tb_fornecedor AS f ON t.id_forn=f.id_forn WHERE id_titulo={id_titulo};"
+        conexao.cursor.execute(sql1)
+        rows = conexao.cursor.fetchall()
+        for row in rows:
+            print('titulo :',row[2],'-', row[3],'-', row[5])
 
+        opcao = input('Deseja realmente excluir? S - sim | N - não :')
 
+        if(opcao.lower()=='s'):
+            sql = f"DELETE FROM tb_titulo WHERE id_titulo={id_titulo};"
+            conexao.cursor.execute(sql)
+            conexao.conn.commit()
+            conexao.cursor.close()
+            conexao.conn.close()
+            print('Excluido com sucesso.')
+        else:
+            print('Registro não excluido.')
+    except NameError as erro:
+        print('Erro', erro)
 
 if(__name__=='__main__'):
      cadastro()
